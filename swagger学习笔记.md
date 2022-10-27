@@ -62,7 +62,7 @@ Springfox对应的maven坐标如下：
 
 
 
-第一步：创建工程swagger_demo
+### 第一步：创建工程swagger_demo
 
 
 
@@ -74,7 +74,7 @@ Springfox对应的maven坐标如下：
 
 
 
-第二步：修改pom文件
+### 第二步：修改pom文件
 
 
 
@@ -143,7 +143,7 @@ Springfox对应的maven坐标如下：
 
 
 
-第三步：创建实体类User
+### 第三步：创建实体类User
 
 
 
@@ -188,7 +188,7 @@ public class User
 
 
 
-第四步：给实体类User添加对应的注解
+### 第四步：给实体类User添加对应的注解
 
 
 
@@ -293,7 +293,7 @@ public class User
 
 
 
-第五步：创建实体类Menu
+### 第五步：创建实体类Menu
 
 
 
@@ -341,7 +341,7 @@ public class Menu
 
 
 
-第六步：给实体类Menu添加对应的注解
+### 第六步：给实体类Menu添加对应的注解
 
 
 
@@ -512,7 +512,7 @@ public class Menu
 
 
 
-第七步：创建实体类Student
+### 第七步：创建实体类Student
 
 
 
@@ -557,7 +557,7 @@ public class Student
 
 
 
-第八步：给实体类Student添加对应的注解
+### 第八步：给实体类Student添加对应的注解
 
 
 
@@ -728,7 +728,7 @@ public class Student
 
 
 
-第九步：创建UserController
+### 第九步：创建UserController
 
 
 
@@ -798,7 +798,7 @@ public class UserController
 
 
 
-第十步：给UserController添加对应的注解
+### 第十步：给UserController添加对应的注解
 
 
 
@@ -884,7 +884,7 @@ public class UserController
 
 
 
-第十一步：创建MenuController
+### 第十一步：创建MenuController
 
 
 
@@ -941,7 +941,7 @@ public class MenuController
 
 
 
-第十二步：给MenuController添加相应的注解
+### 第十二步：给MenuController添加相应的注解
 
 
 
@@ -1021,7 +1021,7 @@ public class MenuController
 
 
 
-第十三步：创建StudentController
+### 第十三步：创建StudentController
 
 
 
@@ -1063,7 +1063,7 @@ public class StudentController
 
 
 
-第十四步：给StudentController添加相应的注解
+### 第十四步：给StudentController添加相应的注解
 
 
 
@@ -1120,7 +1120,7 @@ public class StudentController
 
 
 
-第十五步：添加配置类SwaggerConfig
+### 第十五步：添加配置类SwaggerConfig
 
 
 
@@ -1190,7 +1190,7 @@ public class SwaggerConfig
 
 
 
-第十六步：更改配置文件
+### 第十六步：更改配置文件
 
 
 
@@ -1205,7 +1205,7 @@ spring:
 
 
 
-第十七步：启动程序
+### 第十七步：启动程序
 
 
 
@@ -1241,7 +1241,7 @@ spring:
 
 
 
-第十八步：访问
+### 第十八步：访问
 
 
 
