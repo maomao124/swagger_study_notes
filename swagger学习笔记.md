@@ -1,5 +1,23 @@
 
 
+[TOC]
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2613,7 +2631,7 @@ http://localhost:8080/doc.html
 
 
 
-第一步：初始化项目
+#### 第一步：初始化项目
 
 
 
@@ -2651,7 +2669,7 @@ http://localhost:8080/doc.html
 
 
 
-第二步：修改pom文件
+#### 第二步：修改pom文件
 
 
 
@@ -2824,7 +2842,7 @@ http://localhost:8080/doc.html
 
 
 
-第三步：给子工程tools-swagger2添加依赖：
+#### 第三步：给子工程tools-swagger2添加依赖：
 
 ```xml
         <dependency>
@@ -2854,7 +2872,7 @@ http://localhost:8080/doc.html
 
 
 
-第四步：创建配置属性类SwaggerConfigurationProperties
+#### 第四步：创建配置属性类SwaggerConfigurationProperties
 
 
 
@@ -2864,7 +2882,7 @@ http://localhost:8080/doc.html
 
 
 
-第五步：创建配置类SwaggerAutoConfiguration
+#### 第五步：创建配置类SwaggerAutoConfiguration
 
 
 
@@ -3133,7 +3151,7 @@ http://localhost:8080/doc.html
 
 
 
-第六步：在resources的META-INF目录下创建spring.factories文件
+#### 第六步：在resources的META-INF目录下创建spring.factories文件
 
 
 
@@ -3164,7 +3182,7 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 
 
 
-第一步：拷贝之前的entity包和controller包到此项目里
+#### 第一步：拷贝之前的entity包和controller包到此项目里
 
 
 
@@ -3174,7 +3192,7 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 
 
 
-第二步：在pom文件中添加tools-swagger2的依赖
+#### 第二步：在pom文件中添加tools-swagger2的依赖
 
 
 
@@ -3238,7 +3256,7 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 
 
 
-第三步：修改配置文件
+#### 第三步：修改配置文件
 
 
 
@@ -3277,7 +3295,7 @@ spring:
 
 
 
-第四步：启动程序
+#### 第四步：启动程序
 
 
 
@@ -3313,7 +3331,7 @@ spring:
 
 
 
-第五步：访问
+#### 第五步：访问
 
 
 
@@ -3359,3 +3377,24 @@ http://localhost:8080/doc.html
 
 
 
+
+
+
+
+
+
+
+
+
+
+---
+
+end
+
+---
+
+by mao
+
+2022  10  27
+
+---
