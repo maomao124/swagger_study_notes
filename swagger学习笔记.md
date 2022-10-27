@@ -3242,3 +3242,120 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 
 
 
+```yaml
+swagger:
+  # 是否启用swagger
+  enabled: true
+  title: 在线文档
+  group: 默认组
+  version: @version@
+  contact:
+    name: mao
+    url: https://github.com/maomao124/
+    email: 1234@qq.com
+  base-package: mao.useswagger
+  # 分组文档
+#  docket:
+#    user:
+#      title: 用户模块
+#      base-package:
+#    menu:
+#      title: 菜单模块
+#      base-package:
+
+
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+```
+
+
+
+
+
+
+
+第四步：启动程序
+
+
+
+```sh
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.1)
+
+2022-10-27 15:35:51.288  INFO 9672 --- [           main] mao.useswagger.UseSwaggerApplication     : Starting UseSwaggerApplication using Java 16.0.2 on mao with PID 9672 (H:\程序\大四上期\swagger_starter_demo\use-swagger\target\classes started by mao in H:\程序\大四上期\swagger_starter_demo)
+2022-10-27 15:35:51.291  INFO 9672 --- [           main] mao.useswagger.UseSwaggerApplication     : No active profile set, falling back to 1 default profile: "default"
+2022-10-27 15:35:52.240  INFO 9672 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-10-27 15:35:52.249  INFO 9672 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-10-27 15:35:52.249  INFO 9672 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2022-10-27 15:35:52.348  INFO 9672 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-27 15:35:52.348  INFO 9672 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1003 ms
+2022-10-27 15:35:52.839  INFO 9672 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-10-27 15:35:52.848  INFO 9672 --- [           main] m.t.config.SwaggerAutoConfiguration      : 初始化swagger接口文档
+2022-10-27 15:35:52.908  INFO 9672 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-27 15:35:52.909  INFO 9672 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2022-10-27 15:35:52.919  INFO 9672 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2022-10-27 15:35:52.943  INFO 9672 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2022-10-27 15:35:52.963  INFO 9672 --- [           main] mao.useswagger.UseSwaggerApplication     : Started UseSwaggerApplication in 1.998 seconds (JVM running for 2.628)
+```
+
+
+
+
+
+
+
+第五步：访问
+
+
+
+http://localhost:8080/doc.html
+
+
+
+![image-20221027154234026](img/swagger学习笔记/image-20221027154234026.png)
+
+
+
+
+
+
+
+
+
+![image-20221027154251014](img/swagger学习笔记/image-20221027154251014.png)
+
+
+
+
+
+![image-20221027154306409](img/swagger学习笔记/image-20221027154306409.png)
+
+
+
+
+
+
+
+![image-20221027154327767](img/swagger学习笔记/image-20221027154327767.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
