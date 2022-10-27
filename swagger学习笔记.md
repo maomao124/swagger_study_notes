@@ -112,12 +112,12 @@ Springfox对应的maven坐标如下：
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>3.0.0</version>
+            <version>2.9.2</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>3.0.0</version>
+            <version>2.9.2</version>
         </dependency>
 
     </dependencies>
@@ -132,6 +132,7 @@ Springfox对应的maven坐标如下：
     </build>
 
 </project>
+
 ```
 
 
@@ -883,7 +884,464 @@ public class UserController
 
 
 
-第九步：创建MenuController
+第十一步：创建MenuController
+
+
+
+```java
+package mao.swagger_demo.controller;
+
+import org.springframework.web.bind.annotation.*;
+
+/**
+ * Project name(项目名称)：swagger_demo
+ * Package(包名): mao.swagger_demo.controller
+ * Class(类名): MenuController
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2022/10/26
+ * Time(创建时间)： 21:02
+ * Version(版本): 1.0
+ * Description(描述)： 无
+ */
+
+
+public class MenuController
+{
+    @PostMapping("/save")
+    public String save()
+    {
+        return "OK";
+    }
+
+    @PutMapping("/update")
+    public String update()
+    {
+        return "OK";
+    }
+
+    @DeleteMapping("/delete")
+    public String delete(int id)
+    {
+        return "OK";
+    }
+
+
+    @GetMapping(value = "page/{pageNum}/{pageSize}")
+    public List<Menu> findByPage(@PathVariable Integer pageNum,
+                             @PathVariable Integer pageSize)
+    {
+        return null;
+    }
+}
+```
+
+
+
+
+
+第十二步：给MenuController添加相应的注解
+
+
+
+```java
+package mao.swagger_demo.controller;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
+
+/**
+ * Project name(项目名称)：swagger_demo
+ * Package(包名): mao.swagger_demo.controller
+ * Class(类名): MenuController
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2022/10/26
+ * Time(创建时间)： 21:02
+ * Version(版本): 1.0
+ * Description(描述)： 无
+ */
+
+
+@RestController()
+@RequestMapping("/menu")
+@Api(tags = "菜单控制器")
+public class MenuController
+{
+    @PostMapping("/save")
+    @ApiOperation(value = "添加菜单", notes = "添加菜单")
+    public String save()
+    {
+        return "OK";
+    }
+
+    @PutMapping("/update")
+    @ApiOperation(value = "更新菜单", notes = "更新菜单")
+    public String update()
+    {
+        return "OK";
+    }
+
+    @DeleteMapping("/delete")
+    @ApiOperation(value = "删除菜单", notes = "删除菜单")
+    @ApiImplicitParams
+            (
+                    @ApiImplicitParam(name = "id", value = "菜单的id", required = true, type = "long")
+            )
+    public String delete(long id)
+    {
+        return "OK";
+    }
+
+
+    @GetMapping(value = "page/{pageNum}/{pageSize}")
+    @ApiOperation(value = "分页查询", notes = "分页查询菜单信息")
+    @ApiImplicitParams
+            (
+                    {
+                            @ApiImplicitParam(name = "pageNum", value = "页码", required = true, type = "Integer"),
+                            @ApiImplicitParam(name = "pageSize", value = "每页能显示的条数", required = true, type = "Integer")
+                    }
+            )
+    public List<Menu> findByPage(@PathVariable Integer pageNum,
+                             @PathVariable Integer pageSize)
+    {
+        return null;
+    }
+}
+
+```
+
+
+
+
+
+第十三步：创建StudentController
+
+
+
+```java
+package mao.swagger_demo.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * Project name(项目名称)：swagger_demo
+ * Package(包名): mao.swagger_demo.controller
+ * Class(类名): StudentController
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2022/10/26
+ * Time(创建时间)： 21:12
+ * Version(版本): 1.0
+ * Description(描述)： 无
+ */
+
+@RestController
+@RequestMapping("/student")
+public class StudentController
+{
+    @GetMapping("/{pageNum}/{pageSize}")
+    public List<Student> findByPage(@PathVariable Integer pageNum,
+                             @PathVariable Integer pageSize)
+    {
+        return null;
+    }
+}
+```
+
+
+
+
+
+第十四步：给StudentController添加相应的注解
+
+
+
+```java
+package mao.swagger_demo.controller;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * Project name(项目名称)：swagger_demo
+ * Package(包名): mao.swagger_demo.controller
+ * Class(类名): StudentController
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2022/10/26
+ * Time(创建时间)： 21:12
+ * Version(版本): 1.0
+ * Description(描述)： 无
+ */
+
+@RestController
+@RequestMapping("/student")
+@Api(tags = "学生控制器")
+public class StudentController
+{
+    @GetMapping("/{pageNum}/{pageSize}")
+    @ApiOperation(value = "分页查询学生的信息", notes = "分页查询学生的信息")
+    @ApiImplicitParams
+            (
+                    {
+                            @ApiImplicitParam(name = "pageNum", value = "页码", required = true, type = "Integer"),
+                            @ApiImplicitParam(name = "pageSize", value = "每页能显示的条数", required = true, type = "Integer")
+                    }
+            )
+    public List<Student> findByPage(@PathVariable Integer pageNum,
+                             @PathVariable Integer pageSize)
+    {
+        return null;
+    }
+}
+```
+
+
+
+
+
+
+
+第十五步：添加配置类SwaggerConfig
+
+
+
+```java
+package mao.swagger_demo.config;
+
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+
+
+/**
+ * Project name(项目名称)：swagger_demo
+ * Package(包名): mao.swagger_demo.config
+ * Class(类名): SwaggerConfig
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2022/10/26
+ * Time(创建时间)： 21:19
+ * Version(版本): 1.0
+ * Description(描述)： 无
+ */
+
+@Configuration
+@EnableSwagger2
+public class SwaggerConfig
+{
+    private ApiInfo apiInfo()
+    {
+        return new ApiInfoBuilder()
+                .title("API接口文档")
+                .contact(new Contact("mao", "https://github.com/maomao124/", "1234@qq.com"))
+                .version("1.0")
+                .description("描述")
+                .build();
+    }
+
+    @Bean
+    public Docket docket()
+    {
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .groupName("默认组")
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("mao.swagger_demo"))
+                .build();
+        return docket;
+    }
+}
+
+```
+
+
+
+
+
+
+
+第十六步：更改配置文件
+
+
+
+```yaml
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+```
+
+
+
+
+
+第十七步：启动程序
+
+
+
+```sh
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.1)
+
+2022-10-27 12:43:12.425  INFO 15432 --- [           main] mao.swagger_demo.SwaggerDemoApplication  : Starting SwaggerDemoApplication using Java 16.0.2 on mao with PID 15432 (H:\程序\大四上期\swagger_demo\target\classes started by mao in H:\程序\大四上期\swagger_demo)
+2022-10-27 12:43:12.427  INFO 15432 --- [           main] mao.swagger_demo.SwaggerDemoApplication  : No active profile set, falling back to 1 default profile: "default"
+2022-10-27 12:43:13.257  INFO 15432 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-10-27 12:43:13.264  INFO 15432 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-10-27 12:43:13.265  INFO 15432 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2022-10-27 12:43:13.350  INFO 15432 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-27 12:43:13.350  INFO 15432 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 883 ms
+2022-10-27 12:43:13.604  INFO 15432 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-10-27 12:43:13.753  INFO 15432 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-27 12:43:13.754  INFO 15432 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2022-10-27 12:43:13.765  INFO 15432 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2022-10-27 12:43:13.786  INFO 15432 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2022-10-27 12:43:13.882  INFO 15432 --- [           main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findByPageUsingGET_1
+2022-10-27 12:43:13.914  INFO 15432 --- [           main] mao.swagger_demo.SwaggerDemoApplication  : Started SwaggerDemoApplication in 1.787 seconds (JVM running for 2.316)
+```
+
+
+
+
+
+
+
+第十八步：访问
+
+
+
+http://localhost:8080/swagger-ui.html
+
+
+
+
+
+![image-20221027124422523](img/swagger学习笔记/image-20221027124422523.png)
+
+
+
+
+
+
+
+![image-20221027124439939](img/swagger学习笔记/image-20221027124439939.png)
+
+
+
+
+
+![image-20221027124527547](img/swagger学习笔记/image-20221027124527547.png)
+
+
+
+
+
+
+
+![image-20221027124543762](img/swagger学习笔记/image-20221027124543762.png)
+
+
+
+
+
+![image-20221027124558145](img/swagger学习笔记/image-20221027124558145.png)
+
+
+
+
+
+![image-20221027124610723](img/swagger学习笔记/image-20221027124610723.png)
+
+
+
+
+
+
+
+![image-20221027124658687](img/swagger学习笔记/image-20221027124658687.png)
+
+
+
+
+
+
+
+![image-20221027124731415](img/swagger学习笔记/image-20221027124731415.png)
+
+
+
+
+
+
+
+![image-20221027124741222](img/swagger学习笔记/image-20221027124741222.png)
+
+
+
+
+
+![image-20221027124755519](img/swagger学习笔记/image-20221027124755519.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## knife4j介绍
 
 
 
