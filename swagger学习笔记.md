@@ -1362,7 +1362,7 @@ knife4j是为Java MVC框架集成Swagger生成Api文档的增强解决方案,前
 
 
 
-第一步：创建工程swagger_knife4j_demo
+### 第一步：创建工程swagger_knife4j_demo
 
 
 
@@ -1374,7 +1374,7 @@ knife4j是为Java MVC框架集成Swagger生成Api文档的增强解决方案,前
 
 
 
-第二步：修改pom文件
+### 第二步：修改pom文件
 
 
 
@@ -1437,7 +1437,7 @@ knife4j是为Java MVC框架集成Swagger生成Api文档的增强解决方案,前
 
 
 
-第三步：拷贝之前的entity包和controller包到此项目里
+### 第三步：拷贝之前的entity包和controller包到此项目里
 
 
 
@@ -1449,7 +1449,7 @@ knife4j是为Java MVC框架集成Swagger生成Api文档的增强解决方案,前
 
 
 
-第四步：创建配置属性类SwaggerConfigurationProperties
+### 第四步：创建配置属性类SwaggerConfigurationProperties
 
 
 
@@ -2176,7 +2176,7 @@ public class SwaggerConfigurationProperties
 
 
 
-第五步：修改application.yml文件
+### 第五步：修改application.yml文件
 
 
 
@@ -2215,7 +2215,7 @@ spring:
 
 
 
-第六步：创建配置类SwaggerConfig
+### 第六步：创建配置类SwaggerConfig
 
 
 
@@ -2480,7 +2480,7 @@ http://localhost:8080/doc.html
 
 
 
-第七步：启动程序
+### 第七步：启动程序
 
 
 
@@ -2519,7 +2519,7 @@ http://localhost:8080/doc.html
 
 
 
-第八步：访问
+### 第八步：访问
 
 
 
@@ -2608,4 +2608,637 @@ http://localhost:8080/doc.html
 
 
 ## 自定义spring boot starter
+
+### 开发starter
+
+
+
+第一步：初始化项目
+
+
+
+创建父工程swagger_starter_demo
+
+
+
+![image-20221027150424571](img/swagger学习笔记/image-20221027150424571.png)
+
+
+
+
+
+
+
+创建子工程tools-swagger2
+
+
+
+![image-20221027150636113](img/swagger学习笔记/image-20221027150636113.png)
+
+
+
+
+
+创建子工程use-swagger
+
+
+
+![image-20221027151029909](img/swagger学习笔记/image-20221027151029909.png)
+
+
+
+
+
+
+
+第二步：修改pom文件
+
+
+
+父工程swagger_starter_demo：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.1</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>mao</groupId>
+    <artifactId>swagger_starter_demo</artifactId>
+    <version>0.0.1</version>
+    <name>swagger_starter_demo</name>
+    <description>swagger_starter_demo</description>
+    <packaging>pom</packaging>
+
+    <properties>
+        <java.version>11</java.version>
+    </properties>
+
+
+    <modules>
+        <module>tools-swagger2</module>
+        <module>use-swagger</module>
+    </modules>
+
+    <dependencies>
+
+
+    </dependencies>
+
+    <dependencyManagement>
+
+        <dependencies>
+
+        </dependencies>
+
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+```
+
+
+
+
+
+子工程tools-swagger2：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>swagger_starter_demo</artifactId>
+        <groupId>mao</groupId>
+        <version>0.0.1</version>
+    </parent>
+
+    <artifactId>tools-swagger2</artifactId>
+    <version>0.0.1</version>
+    <name>tools-swagger2</name>
+    <description>tools-swagger2</description>
+
+    <properties>
+
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+```
+
+
+
+
+
+子工程use-swagger：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>swagger_starter_demo</artifactId>
+        <groupId>mao</groupId>
+        <version>0.0.1</version>
+    </parent>
+
+    <artifactId>use-swagger</artifactId>
+    <version>0.0.1</version>
+    <name>use-swagger</name>
+    <description>use-swagger</description>
+
+    <properties>
+
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+```
+
+
+
+
+
+
+
+
+
+第三步：给子工程tools-swagger2添加依赖：
+
+```xml
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+        <!--spring boot starter开发依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+```
+
+
+
+
+
+第四步：创建配置属性类SwaggerConfigurationProperties
+
+
+
+就是之前写的那个类，不重复添加了
+
+
+
+
+
+第五步：创建配置类SwaggerAutoConfiguration
+
+
+
+就是之前写的那个类，内容相同，但是类名不同
+
+
+
+```java
+package mao.toolsswagger2.config;
+
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * Project name(项目名称)：tools-swagger2
+ * Package(包名):
+ * Class(类名): SwaggerAutoConfiguration
+ * Author(作者）: mao.toolsswagger2.config
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2022/10/27
+ * Time(创建时间)： 13:40
+ * Version(版本): 1.0
+ * Description(描述)： 无
+ */
+
+@Configuration
+@EnableSwagger2
+@ConditionalOnProperty(name = "swagger.enabled", havingValue = "true", matchIfMissing = true)
+@EnableConfigurationProperties
+@Import(SwaggerConfigurationProperties.class)
+public class SwaggerAutoConfiguration implements BeanFactoryAware
+{
+
+    /*
+
+    配置文件示例：
+
+swagger:
+  # 是否启用swagger
+  enabled: true
+  title: 在线文档
+  group: 默认组
+  version: 1.0
+  contact:
+    name: mao
+    url: https://github.com/maomao124/
+    email: 1234@qq.com
+  base-package: mao.swagger_knife4j_demo
+  # 分组文档
+#  docket:
+#    user:
+#      title: 用户模块
+#      base-package:
+#    menu:
+#      title: 菜单模块
+#      base-package:
+
+
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+
+http://localhost:8080/swagger-ui.html
+http://localhost:8080/doc.html
+     */
+
+
+    @Autowired
+    private SwaggerConfigurationProperties swaggerConfigurationProperties;
+
+    private static final Logger log = LoggerFactory.getLogger(SwaggerAutoConfiguration.class);
+
+    /**
+     * bean工厂
+     */
+    private BeanFactory beanFactory;
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException
+    {
+        this.beanFactory = beanFactory;
+    }
+
+
+    @Bean
+    @ConditionalOnMissingBean
+    @SuppressWarnings("all")
+    public List<Docket> createRestApi()
+    {
+        ConfigurableBeanFactory configurableBeanFactory =
+                (ConfigurableBeanFactory) beanFactory;
+        List<Docket> docketList = new LinkedList<>();
+        // 没有分组的情况
+        if (swaggerConfigurationProperties.getDocket().isEmpty())
+        {
+            Docket docket = createDocket(swaggerConfigurationProperties);
+            configurableBeanFactory.registerSingleton(swaggerConfigurationProperties.getTitle(),
+                    docket);
+            docketList.add(docket);
+            return docketList;
+        }
+        // 分组创建
+        for (String groupName : swaggerConfigurationProperties.getDocket().keySet())
+        {
+            SwaggerConfigurationProperties.DocketInfo docketInfo =
+                    swaggerConfigurationProperties.getDocket().get(groupName);
+            ApiInfo apiInfo = new ApiInfoBuilder()
+                    //页面标题
+                    .title(docketInfo.getTitle())
+                    //创建人
+                    .contact(new Contact
+                            (
+                                    docketInfo.getContact().getName(),
+                                    docketInfo.getContact().getUrl(),
+                                    docketInfo.getContact().getEmail()))
+                    //版本号
+                    .version(docketInfo.getVersion())
+                    //描述
+                    .description(docketInfo.getDescription())
+                    .build();
+
+            // base-path处理
+            // 当没有配置任何path的时候，解析/**
+            if (docketInfo.getBasePath().isEmpty())
+            {
+                docketInfo.getBasePath().add("/**");
+            }
+            List<Predicate<String>> basePath = new ArrayList<>();
+            for (String path : docketInfo.getBasePath())
+            {
+                basePath.add(PathSelectors.ant(path));
+            }
+
+            // exclude-path处理
+            List<Predicate<String>> excludePath = new ArrayList<>();
+            for (String path : docketInfo.getExcludePath())
+            {
+                excludePath.add(PathSelectors.ant(path));
+            }
+
+            Docket docket = new Docket(DocumentationType.SWAGGER_2)
+                    .apiInfo(apiInfo)
+                    .groupName(docketInfo.getGroup())
+                    .select()
+                    //为当前包路径
+                    .apis(RequestHandlerSelectors.basePackage(docketInfo.getBasePackage()))
+                    .paths(Predicates.and(Predicates.not(Predicates.or(excludePath)), Predicates.or(basePath)))
+                    .build();
+            configurableBeanFactory.registerSingleton(groupName, docket);
+            docketList.add(docket);
+        }
+        return docketList;
+    }
+
+    /**
+     * 构建 api文档的详细信息
+     *
+     * @param swaggerConfigurationProperties 配置属性
+     * @return {@link ApiInfo}
+     */
+    private ApiInfo apiInfo(SwaggerConfigurationProperties swaggerConfigurationProperties)
+    {
+        return new ApiInfoBuilder()
+                //页面标题
+                .title(swaggerConfigurationProperties.getTitle())
+                //创建人
+                .contact(new Contact
+                        (
+                                swaggerConfigurationProperties.getContact().getName(),
+                                swaggerConfigurationProperties.getContact().getUrl(),
+                                swaggerConfigurationProperties.getContact().getEmail()
+                        )
+                )
+                //版本号
+                .version(swaggerConfigurationProperties.getVersion())
+                //描述
+                .description(swaggerConfigurationProperties.getDescription())
+                .build();
+    }
+
+
+    /**
+     * 创建接口文档对象
+     *
+     * @param swaggerConfigurationProperties 配置属性
+     * @return {@link Docket}
+     */
+    @SuppressWarnings("all")
+    private Docket createDocket(SwaggerConfigurationProperties swaggerConfigurationProperties)
+    {
+        //API 基础信息
+        ApiInfo apiInfo = apiInfo(swaggerConfigurationProperties);
+
+        // base-path处理
+        // 当没有配置任何path的时候，解析/**
+        if (swaggerConfigurationProperties.getBasePath().isEmpty())
+        {
+            swaggerConfigurationProperties.getBasePath().add("/**");
+        }
+        List<Predicate<String>> basePath = new ArrayList<>();
+        for (String path : swaggerConfigurationProperties.getBasePath())
+        {
+            basePath.add(PathSelectors.ant(path));
+        }
+
+        // exclude-path处理
+        List<Predicate<String>> excludePath = new ArrayList<>();
+        for (String path : swaggerConfigurationProperties.getExcludePath())
+        {
+            excludePath.add(PathSelectors.ant(path));
+        }
+
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo)
+                .groupName(swaggerConfigurationProperties.getGroup())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage(swaggerConfigurationProperties.getBasePackage()))
+                .paths(Predicates.and(Predicates.not(Predicates.or(excludePath)), Predicates.or(basePath)))
+                .build();
+    }
+
+
+    @PostConstruct
+    public void init()
+    {
+        log.info("初始化swagger接口文档");
+    }
+
+}
+```
+
+
+
+
+
+
+
+第六步：在resources的META-INF目录下创建spring.factories文件
+
+
+
+```
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  mao.toolsswagger2.config.SwaggerAutoConfiguration
+```
+
+
+
+
+
+
+
+![image-20221027152402074](img/swagger学习笔记/image-20221027152402074.png)
+
+
+
+
+
+
+
+
+
+
+
+### 使用starter
+
+
+
+第一步：拷贝之前的entity包和controller包到此项目里
+
+
+
+![image-20221027152813592](img/swagger学习笔记/image-20221027152813592.png)
+
+
+
+
+
+第二步：在pom文件中添加tools-swagger2的依赖
+
+
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>swagger_starter_demo</artifactId>
+        <groupId>mao</groupId>
+        <version>0.0.1</version>
+    </parent>
+
+    <artifactId>use-swagger</artifactId>
+    <version>0.0.1</version>
+    <name>use-swagger</name>
+    <description>use-swagger</description>
+
+    <properties>
+
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>mao</groupId>
+            <artifactId>tools-swagger2</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+```
+
+
+
+
+
+
+
+第三步：修改配置文件
+
+
 
